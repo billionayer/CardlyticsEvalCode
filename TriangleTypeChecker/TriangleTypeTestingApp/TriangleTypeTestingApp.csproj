@@ -81,9 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TriangleTestData.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BusinessServices\BusinessServices.csproj">
       <Project>{8d57f7cf-5ebd-4a5e-aa92-81259af8a98a}</Project>
       <Name>BusinessServices</Name>
