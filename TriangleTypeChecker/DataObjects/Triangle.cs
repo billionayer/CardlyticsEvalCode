@@ -54,22 +54,22 @@ namespace TriangleTypeChecker.DataObjects
 
             //Geometric rule for Triangle is that the sum of two sides must always be 
             //greater than the thrid.
-            if ((sides[0] + sides[1]) > sides[2])
+            if ((sides[0] + sides[1]) <= sides[2])
             {
-                return true;
+                return false;
             }
-            else if ((sides[1] + sides[2]) > sides[0])
+            else if ((sides[1] + sides[2]) <= sides[0])
             {
-                return true;
+                return false;
             }
-            else if ((sides[0] + sides[2]) > sides[1])
+            else if ((sides[0] + sides[2]) <= sides[1])
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
 
         }
-        private TriangleTypeEnum GetType()
+        private TriangleTypeEnum GetTriangleType()
         {
            
 
@@ -119,7 +119,7 @@ namespace TriangleTypeChecker.DataObjects
         {
             get
             {
-                return GetType();
+                return GetTriangleType();
             }
         }
         #endregion
