@@ -28,7 +28,8 @@ namespace TriangleTypeChecker.DataObjects
     {
         Valid,
         Invalid_Too_Few_Sides,
-        Invalid_Sum_of_Two_Sides_Rule
+        Invalid_Sum_of_Two_Sides_Rule,
+        Invalid_One_or_More_Sides_With_Zero_Length
     }
     public class Triangle
     {
@@ -99,9 +100,15 @@ namespace TriangleTypeChecker.DataObjects
                 return TriangleValidationResult.Invalid_Too_Few_Sides;
             }
 
+            //Deal with situation if one or more side is zero in length
+            if(sides[0] == 0 || sides[1] == 0 || sides[2] == 0 )
+            {
+                return TriangleValidationResult.Invalid_One_or_More_Sides_With_Zero_Length;
+            }
+
             //Geometric rule for Triangle is that the sum of two sides must always be 
             //greater than the thrid.
-            if ((sides[0] + sides[1]) <= sides[2])
+                if ((sides[0] + sides[1]) <= sides[2])
             {
                 return TriangleValidationResult.Invalid_Sum_of_Two_Sides_Rule;
             }
@@ -186,6 +193,9 @@ namespace TriangleTypeChecker.DataObjects
                         break;
                     case TriangleValidationResult.Invalid_Too_Few_Sides:
                         ret = string.Format("There are not enough sides:  Side Count {0}", (sides != null) ? sides.Count : 0);
+                        break;
+                    case TriangleValidationResult.Invalid_One_or_More_Sides_With_Zero_Length:
+                        ret = "All sides of a triangle must be greater than zero";
                         break;
                 }
                 return ret;

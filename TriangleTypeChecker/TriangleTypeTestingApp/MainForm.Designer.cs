@@ -46,10 +46,11 @@
             this.gridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridView.Location = new System.Drawing.Point(13, 86);
             this.gridView.Name = "gridView";
-            this.gridView.Size = new System.Drawing.Size(627, 399);
+            this.gridView.Size = new System.Drawing.Size(984, 577);
             this.gridView.TabIndex = 0;
             // 
             // lblFileName
@@ -68,13 +69,13 @@
             this.textBoxFileName.Location = new System.Drawing.Point(13, 31);
             this.textBoxFileName.Name = "textBoxFileName";
             this.textBoxFileName.ReadOnly = true;
-            this.textBoxFileName.Size = new System.Drawing.Size(493, 20);
+            this.textBoxFileName.Size = new System.Drawing.Size(850, 20);
             this.textBoxFileName.TabIndex = 2;
             // 
             // buttonLocateData
             // 
             this.buttonLocateData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLocateData.Location = new System.Drawing.Point(516, 28);
+            this.buttonLocateData.Location = new System.Drawing.Point(873, 28);
             this.buttonLocateData.Name = "buttonLocateData";
             this.buttonLocateData.Size = new System.Drawing.Size(124, 23);
             this.buttonLocateData.TabIndex = 3;
@@ -88,7 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonProcessData.Location = new System.Drawing.Point(13, 56);
             this.buttonProcessData.Name = "buttonProcessData";
-            this.buttonProcessData.Size = new System.Drawing.Size(627, 23);
+            this.buttonProcessData.Size = new System.Drawing.Size(984, 23);
             this.buttonProcessData.TabIndex = 4;
             this.buttonProcessData.Text = "Load Data File";
             this.buttonProcessData.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 497);
+            this.ClientSize = new System.Drawing.Size(1009, 675);
             this.Controls.Add(this.buttonProcessData);
             this.Controls.Add(this.buttonLocateData);
             this.Controls.Add(this.textBoxFileName);

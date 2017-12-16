@@ -30,6 +30,7 @@ namespace TriangleTypeChecker
                 return;
             }
             gridView.DataSource = CreateDataTable(tests);
+            FormatGrid();
         }
 
         private DataTable CreateEmptyDataTable()
@@ -42,7 +43,7 @@ namespace TriangleTypeChecker
             table.Columns.Add(new DataColumn("IsValidTriangle", typeof(bool)));
             table.Columns.Add(new DataColumn("ExpectedType", typeof(TriangleTypeEnum)));
             table.Columns.Add(new DataColumn("ResultType", typeof(TriangleTypeEnum)));
-            table.Columns.Add(new DataColumn("Error Reason", typeof(string)));
+            table.Columns.Add(new DataColumn("Result Notes", typeof(string)));
             return table;
         }
 
@@ -60,7 +61,7 @@ namespace TriangleTypeChecker
                 row["IsValidTriangle"] = test.TestTriangle.IsValidTriangle;
                 row["ExpectedType"] = test.ExpectedTriangleType;
                 row["ResultType"] = test.TestTriangle.TriangleType;
-                row["Error Reason"] = test.TestTriangle.ReasonTriangleIsInvalid;
+                row["Result Notes"] = test.TestTriangle.ReasonTriangleIsInvalid;
                 table.Rows.Add(row);
             }
             return table;
@@ -113,5 +114,30 @@ namespace TriangleTypeChecker
 
         }
         #endregion
+        
+        private void FormatGrid()
+        {
+            foreach(DataGridViewRow row in gridView.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+                bool Valid = (bool)row.Cells["IsValidTriangle"].Value;
+                Color defaultBackColor = row.DefaultCellStyle.BackColor;
+                Color defaultForeColor = row.DefaultCellStyle.ForeColor;
+
+                row.DefaultCellStyle.BackColor = (Valid) ? defaultBackColor : Color.Yellow;
+
+
+                TriangleTypeEnum expected = (row.Cells["ExpectedType"].Value == null) ? TriangleTypeEnum.NONE :
+                    (TriangleTypeEnum) row.Cells["ExpectedType"].Value;
+                TriangleTypeEnum resultType = (row.Cells["ResultType"].Value == null) ? TriangleTypeEnum.NONE :
+                    (TriangleTypeEnum)row.Cells["ResultType"].Value;
+                if (expected != resultType)
+                {
+                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.Cells["Result Notes"].Value += " Types do not match.";
+                }
+            }
+        }
     }
 }

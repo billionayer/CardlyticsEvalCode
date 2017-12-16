@@ -1,5 +1,10 @@
-﻿234,456,321,Scalene
+﻿SideA,SideB,SideC,TriangleType
+234,456,321,Scalene
 564,234,564,Isosceles
 777,777,777,Equilateral
-1,777,1,Isosceles
+1,777,1,None
 555,222,111,None
+777,777,771,Equilateral
+777,777,771,Isosceles
+4798742,54764,4798742,Scalene
+1,2,0,Scalene
