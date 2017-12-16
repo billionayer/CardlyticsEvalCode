@@ -1,6 +1,6 @@
-﻿namespace TriangleTypeTestingApp
+﻿namespace TriangleTypeChecker
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -94,7 +94,7 @@
             this.buttonProcessData.UseVisualStyleBackColor = true;
             this.buttonProcessData.Click += new System.EventHandler(this.buttonProcessData_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,7 +104,7 @@
             this.Controls.Add(this.textBoxFileName);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.gridView);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Triangle Testing App";
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             this.ResumeLayout(false);

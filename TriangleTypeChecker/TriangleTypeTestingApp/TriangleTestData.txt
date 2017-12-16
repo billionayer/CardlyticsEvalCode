@@ -1,4 +1,5 @@
 ﻿234,456,321,Scalene
 564,234,564,Isosceles
 777,777,777,Equilateral
+1,777,1,Isosceles
 555,222,111,None
