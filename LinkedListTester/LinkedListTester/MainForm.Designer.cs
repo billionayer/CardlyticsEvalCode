@@ -35,17 +35,17 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.txtRawData = new System.Windows.Forms.RichTextBox();
             this.gbDataAttributes = new System.Windows.Forms.GroupBox();
-            this.txtNumEntries = new System.Windows.Forms.TextBox();
-            this.lblNumEntries = new System.Windows.Forms.Label();
-            this.lblEntryDataType = new System.Windows.Forms.Label();
             this.cmbTypes = new System.Windows.Forms.ComboBox();
+            this.lblEntryDataType = new System.Windows.Forms.Label();
+            this.lblNumEntries = new System.Windows.Forms.Label();
+            this.txtNumEntries = new System.Windows.Forms.TextBox();
             this.gbSearch = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.lblItemNumber = new System.Windows.Forms.Label();
-            this.txtFoundData = new System.Windows.Forms.RichTextBox();
+            this.txtItemNumber = new System.Windows.Forms.TextBox();
             this.cmbSearchType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtItemNumber = new System.Windows.Forms.TextBox();
+            this.txtFoundData = new System.Windows.Forms.RichTextBox();
+            this.lblItemNumber = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.gbDataAttributes.SuspendLayout();
             this.gbSearch.SuspendLayout();
             this.SuspendLayout();
@@ -117,32 +117,6 @@
             this.gbDataAttributes.TabStop = false;
             this.gbDataAttributes.Text = "Data Attributes";
             // 
-            // txtNumEntries
-            // 
-            this.txtNumEntries.Location = new System.Drawing.Point(104, 14);
-            this.txtNumEntries.Name = "txtNumEntries";
-            this.txtNumEntries.ReadOnly = true;
-            this.txtNumEntries.Size = new System.Drawing.Size(155, 20);
-            this.txtNumEntries.TabIndex = 0;
-            // 
-            // lblNumEntries
-            // 
-            this.lblNumEntries.AutoSize = true;
-            this.lblNumEntries.Location = new System.Drawing.Point(7, 20);
-            this.lblNumEntries.Name = "lblNumEntries";
-            this.lblNumEntries.Size = new System.Drawing.Size(91, 13);
-            this.lblNumEntries.TabIndex = 1;
-            this.lblNumEntries.Text = "Number of Entries";
-            // 
-            // lblEntryDataType
-            // 
-            this.lblEntryDataType.AutoSize = true;
-            this.lblEntryDataType.Location = new System.Drawing.Point(7, 46);
-            this.lblEntryDataType.Name = "lblEntryDataType";
-            this.lblEntryDataType.Size = new System.Drawing.Size(84, 13);
-            this.lblEntryDataType.TabIndex = 3;
-            this.lblEntryDataType.Text = "Entry Data Type";
-            // 
             // cmbTypes
             // 
             this.cmbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -155,6 +129,32 @@
             this.cmbTypes.Size = new System.Drawing.Size(155, 21);
             this.cmbTypes.TabIndex = 4;
             this.cmbTypes.SelectedIndexChanged += new System.EventHandler(this.cmbTypes_SelectedIndexChanged);
+            // 
+            // lblEntryDataType
+            // 
+            this.lblEntryDataType.AutoSize = true;
+            this.lblEntryDataType.Location = new System.Drawing.Point(7, 46);
+            this.lblEntryDataType.Name = "lblEntryDataType";
+            this.lblEntryDataType.Size = new System.Drawing.Size(84, 13);
+            this.lblEntryDataType.TabIndex = 3;
+            this.lblEntryDataType.Text = "Entry Data Type";
+            // 
+            // lblNumEntries
+            // 
+            this.lblNumEntries.AutoSize = true;
+            this.lblNumEntries.Location = new System.Drawing.Point(7, 20);
+            this.lblNumEntries.Name = "lblNumEntries";
+            this.lblNumEntries.Size = new System.Drawing.Size(91, 13);
+            this.lblNumEntries.TabIndex = 1;
+            this.lblNumEntries.Text = "Number of Entries";
+            // 
+            // txtNumEntries
+            // 
+            this.txtNumEntries.Location = new System.Drawing.Point(104, 14);
+            this.txtNumEntries.Name = "txtNumEntries";
+            this.txtNumEntries.ReadOnly = true;
+            this.txtNumEntries.Size = new System.Drawing.Size(155, 20);
+            this.txtNumEntries.TabIndex = 0;
             // 
             // gbSearch
             // 
@@ -171,32 +171,12 @@
             this.gbSearch.TabStop = false;
             this.gbSearch.Text = "Search";
             // 
-            // btnSearch
+            // txtItemNumber
             // 
-            this.btnSearch.Location = new System.Drawing.Point(10, 85);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 13;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // lblItemNumber
-            // 
-            this.lblItemNumber.AutoSize = true;
-            this.lblItemNumber.Location = new System.Drawing.Point(7, 21);
-            this.lblItemNumber.Name = "lblItemNumber";
-            this.lblItemNumber.Size = new System.Drawing.Size(70, 13);
-            this.lblItemNumber.TabIndex = 15;
-            this.lblItemNumber.Text = "Item Number:";
-            // 
-            // txtFoundData
-            // 
-            this.txtFoundData.Location = new System.Drawing.Point(201, 12);
-            this.txtFoundData.Name = "txtFoundData";
-            this.txtFoundData.Size = new System.Drawing.Size(468, 96);
-            this.txtFoundData.TabIndex = 16;
-            this.txtFoundData.Text = "";
+            this.txtItemNumber.Location = new System.Drawing.Point(106, 17);
+            this.txtItemNumber.Name = "txtItemNumber";
+            this.txtItemNumber.Size = new System.Drawing.Size(77, 20);
+            this.txtItemNumber.TabIndex = 19;
             // 
             // cmbSearchType
             // 
@@ -219,12 +199,32 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Entry Data Type";
             // 
-            // txtItemNumber
+            // txtFoundData
             // 
-            this.txtItemNumber.Location = new System.Drawing.Point(106, 17);
-            this.txtItemNumber.Name = "txtItemNumber";
-            this.txtItemNumber.Size = new System.Drawing.Size(77, 20);
-            this.txtItemNumber.TabIndex = 19;
+            this.txtFoundData.Location = new System.Drawing.Point(201, 12);
+            this.txtFoundData.Name = "txtFoundData";
+            this.txtFoundData.Size = new System.Drawing.Size(468, 96);
+            this.txtFoundData.TabIndex = 16;
+            this.txtFoundData.Text = "";
+            // 
+            // lblItemNumber
+            // 
+            this.lblItemNumber.AutoSize = true;
+            this.lblItemNumber.Location = new System.Drawing.Point(7, 21);
+            this.lblItemNumber.Name = "lblItemNumber";
+            this.lblItemNumber.Size = new System.Drawing.Size(70, 13);
+            this.lblItemNumber.TabIndex = 15;
+            this.lblItemNumber.Text = "Item Number:";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(10, 85);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // MainForm
             // 
@@ -239,7 +239,7 @@
             this.Controls.Add(this.textBoxFileName);
             this.Controls.Add(this.lblFileName);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Link List Tester App";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.gbDataAttributes.ResumeLayout(false);
             this.gbDataAttributes.PerformLayout();
