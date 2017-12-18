@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,22 +11,87 @@ namespace PrimeNumbers
     {
         static void Main(string[] args)
         {
-            ulong initialValue = 11111;
-            var primes = GetPrimes(initialValue);
-            ulong value = 1;
+            Random rnd = new Random();
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(587953)));
+            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(12387853)));
+            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(7738796)));
+            Task.WaitAll(tasks.ToArray());
+        }
+
+        static List<ulong> LoadData(string fileName)
+        {
+            string rawData = string.Empty;
+            try
+            {
+                using (StreamReader reader = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read)))
+                {
+                    string line = string.Empty;
+                    while (!reader.EndOfStream)
+                    {
+                        line = reader.ReadLine();
+                        if (bIntegerOrString)
+                        {
+                            IntegerLinkedList.Push(long.Parse(line));
+                        }
+                        else
+                        {
+                            StringLinkedList.Push(line);
+                        }
+                        //Add line number to text from file so we can easily reference the line in the text box.
+                        rawData += string.Format("{0}: {1}{2}", lineNumber++, line, Environment.NewLine);
+
+                    }
+                    reader.Close();
+                }
+                txtRawData.Text = rawData;
+                txtNumEntries.Text = ((lineNumber == 1) ? 1 : lineNumber - 1).ToString();
+
+            }
+            catch (IOException ex)
+            {
+                ClearList();
+                throw new IOException(string.Format("Unable to acccess {0}.{1}Reason: {2}", fileName, Environment.NewLine, ex.Message));
+            }
+            catch (Exception ex)
+            {
+                ClearList();
+                throw ex;
+            }
+        }
+
+        static string GeneratePrimeStringList(List<ulong> primes)
+        {
+            string ret = string.Empty; 
+            if(primes == null || primes.Count <= 1)
+            {
+                return ret;
+            }
             foreach(ulong prime in primes)
             {
-                value *= prime;
+                ret += string.Format("{0},", prime);
             }
-            if(value == initialValue)
+            ret = ret.TrimEnd(",".ToCharArray());
+            return ret;
+
+        }
+        static void OutputPrimesToConsole(ulong number)
+        {
+            List<ulong> primes = GetPrimes(number);
+            string msg = string.Empty;
+            if(primes == null || primes.Count == 0)
             {
-                Console.WriteLine("Good");
+                msg = string.Format("Unable to determine any primes for {0}", number);
+            }
+            else if (primes.Count == 1)
+            {
+                msg = string.Format("The number {0} is a prime number", number);
             }
             else
             {
-                Console.WriteLine("Bad");
+                msg = string.Format("The prime numbers for {0} are: {1}", number, GeneratePrimeStringList(primes));
             }
-
+            Console.WriteLine(msg);
         }
 
         static List<ulong> GetPrimes(ulong number)

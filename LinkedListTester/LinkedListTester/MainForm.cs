@@ -37,7 +37,6 @@ namespace LinkedListTester
             {
                 ClearList();
                 bool bIntegerOrString = (cmbTypes.Text == "integer");
-                List<string[]> tokenCollection = new List<string[]>();
                 long lineNumber = 1;
                 using (StreamReader reader = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read)))
                 {
