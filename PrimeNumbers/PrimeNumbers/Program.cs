@@ -11,56 +11,70 @@ namespace PrimeNumbers
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            List<Task> tasks = new List<Task>();
-            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(587953)));
-            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(12387853)));
-            tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(7738796)));
-            Task.WaitAll(tasks.ToArray());
-        }
-
-        static List<ulong> LoadData(string fileName)
-        {
-            string rawData = string.Empty;
             try
             {
+                if(args.Length != 1)
+                {
+                    Console.WriteLine("Usage: PrimeNumbers <fileName>");
+                    return;
+                }
+                string fileName = args[0];
+                if(!File.Exists(fileName))
+                {
+                    Console.WriteLine(string.Format("Unable to locate file: {0}", fileName));
+                }
+
+                //Generate a collection of tasks to run in parallel.  Output is not guarneteed to match input order but results will be correct.
+                List<Task> tasks = new List<Task>();
+                List<ulong> data = LoadData(fileName);
+                foreach (ulong value in data)
+                {
+                    tasks.Add(Task.Factory.StartNew(() => OutputPrimesToConsole(value)));
+                }
+                
+                //Waite for all task to complete before exiting program.
+                Task.WaitAll(tasks.ToArray());
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error processing file: {0}", e.Message);
+            }
+           
+            
+        }
+        static List<ulong> LoadData(string fileName)
+        {
+            
+            try
+            {
+                List<ulong> data = new List<ulong>();
                 using (StreamReader reader = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read)))
                 {
                     string line = string.Empty;
+                    ulong value = 0;
                     while (!reader.EndOfStream)
                     {
                         line = reader.ReadLine();
-                        if (bIntegerOrString)
+                        if(ulong.TryParse(line, out value))
                         {
-                            IntegerLinkedList.Push(long.Parse(line));
+                            data.Add(value);
                         }
-                        else
-                        {
-                            StringLinkedList.Push(line);
-                        }
-                        //Add line number to text from file so we can easily reference the line in the text box.
-                        rawData += string.Format("{0}: {1}{2}", lineNumber++, line, Environment.NewLine);
 
                     }
                     reader.Close();
                 }
-                txtRawData.Text = rawData;
-                txtNumEntries.Text = ((lineNumber == 1) ? 1 : lineNumber - 1).ToString();
-
+                return data;
             }
             catch (IOException ex)
             {
-                ClearList();
                 throw new IOException(string.Format("Unable to acccess {0}.{1}Reason: {2}", fileName, Environment.NewLine, ex.Message));
             }
             catch (Exception ex)
             {
-                ClearList();
                 throw ex;
             }
         }
-
-        static string GeneratePrimeStringList(List<ulong> primes)
+        static string GeneratePrimeStringList(List<ulong> primes, string separator)
         {
             string ret = string.Empty; 
             if(primes == null || primes.Count <= 1)
@@ -69,11 +83,30 @@ namespace PrimeNumbers
             }
             foreach(ulong prime in primes)
             {
-                ret += string.Format("{0},", prime);
+                ret += string.Format("{0} {1} ", prime,separator);
             }
-            ret = ret.TrimEnd(",".ToCharArray());
+            ret = ret.TrimEnd((" " + separator).ToCharArray());
             return ret;
 
+        }
+        static string GenerateCheck(List<ulong> primes, ulong expectedResult)
+        {
+            if(primes == null || primes.Count <= 1)
+            {
+                return string.Empty;
+            }
+            ulong calculatedResult = 1;
+
+            foreach(ulong prime in primes)
+            {
+                calculatedResult *= prime;
+            }
+            bool resultMatch = (calculatedResult == expectedResult);
+            string primeMultiplyString = GeneratePrimeStringList(primes, "*");
+            string status = (resultMatch) ? "GOOD" : "BAD";
+
+            return string.Format("Check ({0} = {1}  Expected Result: {2} Status: {3})", primeMultiplyString, calculatedResult, expectedResult, status);
+            
         }
         static void OutputPrimesToConsole(ulong number)
         {
@@ -89,11 +122,10 @@ namespace PrimeNumbers
             }
             else
             {
-                msg = string.Format("The prime numbers for {0} are: {1}", number, GeneratePrimeStringList(primes));
+                msg = string.Format("The prime numbers for {0} are: {1}{2}{3}{2}", number, GeneratePrimeStringList(primes,","), Environment.NewLine, GenerateCheck(primes,number));
             }
             Console.WriteLine(msg);
         }
-
         static List<ulong> GetPrimes(ulong number)
         {
             List<ulong> primes = new List<ulong>();
